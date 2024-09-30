@@ -19,7 +19,7 @@ public class Fruit : MonoBehaviour
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
-        //GameManager.Instance.IncreaseScore(points);
+        GameManager.Instance.IncreaseScore(points);
 
         whole.SetActive(false);
         sliced.SetActive(true);
