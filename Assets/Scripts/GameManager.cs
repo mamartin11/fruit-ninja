@@ -7,20 +7,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Blade blade;
-    [SerializeField] private Spawner spawner;
-    [SerializeField] private Text scoreText;
-    [SerializeField] private Image fadeImage;
+    public Blade blade;
+    public Spawner spawner;
+    public Text scoreText;
+    public Image fadeImage;
 
     public int score { get; private set; } = 0;
 
     private void Awake()
     {
-        if (Instance != null) {
-            DestroyImmediate(gameObject);
-        } else {
-            Instance = this;
-        }
+        blade = FindObjectOfType<Blade>();
+        spawner = FindObjectOfType<Spawner>();
     }
 
     private void OnDestroy()
@@ -56,6 +53,12 @@ public class GameManager : MonoBehaviour
             Destroy(fruit.gameObject);
         }
 
+        Bomb[] bombs = FindObjectsOfType<Bomb>();
+
+        foreach (Bomb bomb in bombs) {
+            Destroy(bomb.gameObject);
+        }
+
         
     }
 
@@ -86,7 +89,6 @@ public class GameManager : MonoBehaviour
         float elapsed = 0f;
         float duration = 0.5f;
 
-        // Fade to white
         while (elapsed < duration)
         {
             float t = Mathf.Clamp01(elapsed / duration);
@@ -104,7 +106,6 @@ public class GameManager : MonoBehaviour
 
         elapsed = 0f;
 
-        // Fade back in
         while (elapsed < duration)
         {
             float t = Mathf.Clamp01(elapsed / duration);
