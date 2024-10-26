@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Spawner spawner;
     public Text scoreText;
     public Image fadeImage;
+    public GameObject fruitLevel1;
 
     public float score { get; private set; } = 0;
 
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         blade = FindObjectOfType<Blade>();
         spawner = FindObjectOfType<Spawner>();
     }
@@ -77,6 +78,11 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString();
 
         float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
+
+        if (score > 100)
+        {
+            spawner.AddFruitPrefab(fruitLevel1);
+        }
 
         if (score > hiscore)
         {

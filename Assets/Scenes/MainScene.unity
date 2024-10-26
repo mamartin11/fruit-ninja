@@ -547,6 +547,7 @@ MonoBehaviour:
   spawner: {fileID: 1259271198}
   scoreText: {fileID: 1915867487}
   fadeImage: {fileID: 776362159}
+  fruitLevel1: {fileID: 2970874166726015120, guid: d527dfca7f542d24b8c31181dfaa107d, type: 3}
 --- !u!4 &855831518
 Transform:
   m_ObjectHideFlags: 0

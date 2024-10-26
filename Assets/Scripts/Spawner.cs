@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     private Collider spawnArea;
-
     public GameObject[] fruitPrefabs;
     public GameObject bombPrefab;
 
@@ -69,4 +68,18 @@ public class Spawner : MonoBehaviour
         }
     }
 
+     public void AddFruitPrefab(GameObject newFruit)
+    {
+        // Aumentar el tamaño del arreglo
+        GameObject[] newFruitPrefabs = new GameObject[fruitPrefabs.Length + 1];
+        
+        for (int i = 0; i < fruitPrefabs.Length; i++)
+        {
+            newFruitPrefabs[i] = fruitPrefabs[i];
+        }
+        
+        newFruitPrefabs[newFruitPrefabs.Length - 1] = newFruit;
+
+        fruitPrefabs = newFruitPrefabs;
+    }
 }
