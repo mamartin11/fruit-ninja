@@ -12,10 +12,19 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Image fadeImage;
 
-    public int score { get; private set; } = 0;
+    public float score { get; private set; } = 0;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         blade = FindObjectOfType<Blade>();
         spawner = FindObjectOfType<Spawner>();
     }
@@ -62,7 +71,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void IncreaseScore(int points)
+    public void IncreaseScore(float points)
     {
         score += points;
         scoreText.text = score.ToString();

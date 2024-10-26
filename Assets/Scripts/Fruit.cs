@@ -4,11 +4,12 @@ public class Fruit : MonoBehaviour
 {
     public GameObject whole;
     public GameObject sliced;
+    public bool isKiwi;
 
     private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
 
-    public int points = 1;
+    public float points = 1;
 
     private void Awake()
     {
@@ -18,7 +19,13 @@ public class Fruit : MonoBehaviour
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
-        FindObjectOfType<GameManager>().IncreaseScore(points);
+        if (isKiwi && GameManager.Instance != null && GameManager.Instance.score >= 100)
+        {
+            points *= 1.5f;
+        }
+
+        //FindObjectOfType<GameManager>().IncreaseScore(points);
+        GameManager.Instance?.IncreaseScore(points);
 
         whole.SetActive(false);
         sliced.SetActive(true);
