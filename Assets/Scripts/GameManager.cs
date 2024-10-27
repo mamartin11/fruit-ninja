@@ -11,7 +11,11 @@ public class GameManager : MonoBehaviour
     public Spawner spawner;
     public Text scoreText;
     public Image fadeImage;
-    public GameObject fruitLevel1;
+    public GameObject[] initialFruits;
+    public GameObject fruitLevel2;
+    public GameObject fruitLevel3;
+    public GameObject fruitLevel4;
+    public GameObject fruitLevel5;
 
     public float score { get; private set; } = 0;
 
@@ -53,6 +57,7 @@ public class GameManager : MonoBehaviour
 
         score = 0;
         scoreText.text = score.ToString();
+        spawner.ResetFruits();
     }
 
     private void ClearScene()
@@ -68,8 +73,6 @@ public class GameManager : MonoBehaviour
         foreach (Bomb bomb in bombs) {
             Destroy(bomb.gameObject);
         }
-
-        
     }
 
     public void IncreaseScore(float points)
@@ -81,7 +84,22 @@ public class GameManager : MonoBehaviour
 
         if (score > 100)
         {
-            spawner.AddFruitPrefab(fruitLevel1);
+            spawner.AddFruitPrefab(fruitLevel2);
+        }
+        
+        if (score > 200)
+        {
+            spawner.AddFruitPrefab(fruitLevel3);
+        }
+
+        if (score > 300)
+        {
+            spawner.AddFruitPrefab(fruitLevel4);
+        }
+
+        if (score > 400)
+        {
+            spawner.AddFruitPrefab(fruitLevel5);
         }
 
         if (score > hiscore)
@@ -131,5 +149,4 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
-
 }

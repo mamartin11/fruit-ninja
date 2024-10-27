@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1637761661551556660, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_Name
-      value: Bad Apple
+      value: Bad_Apple
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174301607544110968, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
+      propertyPath: isBadApple
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3842284682588487529, guid: 25504251438a6c1458bc142c3170ac68, type: 3}
       propertyPath: m_LocalPosition.y

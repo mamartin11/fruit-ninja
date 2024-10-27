@@ -9,5 +9,4 @@ public class Bomb : MonoBehaviour
             FindObjectOfType<GameManager>().Explode();
         }
     }
-
 }

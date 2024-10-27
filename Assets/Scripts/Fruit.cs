@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class Fruit : MonoBehaviour
@@ -5,9 +6,13 @@ public class Fruit : MonoBehaviour
     public GameObject whole;
     public GameObject sliced;
     public bool isKiwi;
+    public bool isBadApple;
+    public bool isBombWatermelon;
 
     private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
+    private Spawner spawner;
+    private GameManager gameManager;
 
     public float points = 1;
 
@@ -15,13 +20,41 @@ public class Fruit : MonoBehaviour
     {
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitCollider = GetComponent<Collider>();
+        spawner = FindObjectOfType<Spawner>();
+        gameManager = GameManager.Instance;
     }
 
     private void Slice(Vector3 direction, Vector3 position, float force)
     {
+        // Level 2
         if (isKiwi && GameManager.Instance != null && GameManager.Instance.score >= 100)
         {
             points *= 1.5f;
+        }
+        
+        // Level 3
+        if (isBadApple && GameManager.Instance != null && GameManager.Instance.score >= 200)
+        {
+            points *= -2.0f;
+            spawner.SetBombChance(0.1f);
+        }
+
+        // Level 4
+        if (GameManager.Instance != null && GameManager.Instance.score >= 300)
+        {
+            spawner.SetBombChance(0.2f);
+        }
+        
+        if (isBombWatermelon)
+        {
+            gameManager.Explode();
+        }
+
+        // Level 5
+        if (GameManager.Instance != null && GameManager.Instance.score >= 400)
+        {
+            points *= 0.5f;
+            spawner.SetBombChance(0.25f);
         }
 
         //FindObjectOfType<GameManager>().IncreaseScore(points);
@@ -52,5 +85,4 @@ public class Fruit : MonoBehaviour
             Slice(blade.direction, blade.transform.position, blade.sliceForce);
         }
     }
-
 }

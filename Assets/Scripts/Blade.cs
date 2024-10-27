@@ -34,8 +34,7 @@ public class Blade : MonoBehaviour
         } else if (Input.GetMouseButtonUp(0)) {
             StopSlicing();
         } else if (slicing) {
-            ContinueSlicing
-    ();
+            ContinueSlicing();
         }
     }
 
