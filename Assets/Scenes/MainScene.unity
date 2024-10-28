@@ -473,8 +473,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.5, y: 0}
-  m_SizeDelta: {x: -2079, y: -852}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776362159
 MonoBehaviour:
@@ -547,7 +547,11 @@ MonoBehaviour:
   spawner: {fileID: 1259271198}
   scoreText: {fileID: 1915867487}
   fadeImage: {fileID: 776362159}
-  fruitLevel1: {fileID: 0}
+  initialFruits: []
+  fruitLevel2: {fileID: 2970874166726015120, guid: d527dfca7f542d24b8c31181dfaa107d, type: 3}
+  fruitLevel3: {fileID: 2970874166726015120, guid: 696548e84c586e4428f652ff31867156, type: 3}
+  fruitLevel4: {fileID: 2970874166726015120, guid: c0f51456580868745899a7207b9312f9, type: 3}
+  fruitLevel5: {fileID: 2970874166726015120, guid: eb10604627bdd18478762d61cb19a6ed, type: 3}
 --- !u!4 &855831518
 Transform:
   m_ObjectHideFlags: 0

@@ -82,22 +82,22 @@ public class GameManager : MonoBehaviour
 
         float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
 
-        if (score == 100 || score == 100.5)
+        if (score == 100)
         {
             spawner.AddFruitPrefab(fruitLevel2);
         }
         
-        if (score == 200 || score == 200.5)
+        if (score >= 200 && score <= 201)
         {
             spawner.AddFruitPrefab(fruitLevel3);
         }
 
-        if (score == 300 || score == 300.5)
+        if (score >= 300 && score <= 301)
         {
             spawner.AddFruitPrefab(fruitLevel4);
         }
 
-        if (score == 400 || score == 400.5)
+        if (score >= 400 && score <= 401)
         {
             spawner.AddFruitPrefab(fruitLevel5);
         }
