@@ -8,13 +8,14 @@ public class Fruit : MonoBehaviour
     public bool isKiwi;
     public bool isBadApple;
     public bool isBombWatermelon;
+    public float points = 1;
 
     private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
     private Spawner spawner;
     private GameManager gameManager;
-
-    public float points = 1;
+    private AudioSource audioSource;
+    private ParticleSystem juice;
 
     private void Awake()
     {
@@ -22,6 +23,8 @@ public class Fruit : MonoBehaviour
         fruitCollider = GetComponent<Collider>();
         spawner = FindObjectOfType<Spawner>();
         gameManager = GameManager.Instance;
+        audioSource = GetComponent<AudioSource>();
+        juice = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Slice(Vector3 direction, Vector3 position, float force)
@@ -57,7 +60,9 @@ public class Fruit : MonoBehaviour
             spawner.SetBombChance(0.25f);
         }
 
-        //FindObjectOfType<GameManager>().IncreaseScore(points);
+        audioSource.Play();
+        juice.Play();
+
         GameManager.Instance?.IncreaseScore(points);
 
         whole.SetActive(false);

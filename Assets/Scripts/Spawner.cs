@@ -23,7 +23,6 @@ public class Spawner : MonoBehaviour
 
     public float maxLifetime = 5f;
     
-
     private void Awake()
     {
         spawnArea = GetComponent<Collider>();

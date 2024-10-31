@@ -4,12 +4,13 @@ public class Blade : MonoBehaviour
 {
     public float sliceForce = 5f;
     public float minSliceVelocity = 0.01f;
-    private Camera mainCamera;
-    private Collider bladeCollider;
-    private TrailRenderer bladeTrail;
     public Vector3 direction { get; private set; }
     public bool slicing { get; private set; }
 
+    private Camera mainCamera;
+    private Collider bladeCollider;
+    private TrailRenderer bladeTrail;
+    
     private void Awake()
     {
         mainCamera = Camera.main;

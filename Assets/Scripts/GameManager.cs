@@ -1,15 +1,12 @@
-// Importa los namespace necesarios
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Hace que este script se ejecute primero
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    public Blade blade; 
+    public Blade blade;
     public Spawner spawner;
     public Text scoreText;
     public Image fadeImage;
@@ -18,10 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject fruitLevel3;
     public GameObject fruitLevel4;
     public GameObject fruitLevel5;
-
     public float score { get; private set; } = 0;
+    
+    private AudioSource audioSource;
 
-    // Verifica si ya existe un GameManager
     private void Awake()
     {
         if (Instance == null)
@@ -37,7 +34,6 @@ public class GameManager : MonoBehaviour
         spawner = FindObjectOfType<Spawner>();
     }
 
-    // Cuando destryue un GameManager libera su referencia estática
     private void OnDestroy()
     {
         if (Instance == this) {
@@ -45,13 +41,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Inicia un nuevo juego
     private void Start()
     {
         NewGame();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Crea un nuevo juego
     private void NewGame()
     {
         Time.timeScale = 1f;
@@ -66,7 +61,6 @@ public class GameManager : MonoBehaviour
         spawner.ResetFruits();
     }
 
-    // Destruye todos los objetos para limpiar la escena
     private void ClearScene()
     {
         Fruit[] fruits = FindObjectsOfType<Fruit>();
@@ -82,13 +76,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Aumento de puntuación y añade nuevas frutas
     public void IncreaseScore(float points)
     {
         score += points;
         scoreText.text = score.ToString();
 
-        //float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
+        float hiscore = PlayerPrefs.GetFloat("hiscore", 0);
 
         if (score == 100)
         {
@@ -100,7 +93,7 @@ public class GameManager : MonoBehaviour
             spawner.AddFruitPrefab(fruitLevel3);
         }
 
-        if (score >= 300 && score <= 301)
+        if (score >= 5 && score <= 6)
         {
             spawner.AddFruitPrefab(fruitLevel4);
         }
@@ -110,17 +103,19 @@ public class GameManager : MonoBehaviour
             spawner.AddFruitPrefab(fruitLevel5);
         }
 
-        //if (score == hiscore)
-        //{
-         //   hiscore = score;
-         //   PlayerPrefs.SetFloat("hiscore", hiscore);
-        //}
+        if (score == hiscore)
+        {
+            hiscore = score;
+            PlayerPrefs.SetFloat("hiscore", hiscore);
+        }
     }
 
     public void Explode()
     {
         blade.enabled = false;
         spawner.enabled = false;
+
+        audioSource.Play();
 
         StartCoroutine(ExplodeSequence());
     }
