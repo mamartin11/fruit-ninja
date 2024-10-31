@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject fruitLevel4;
     public GameObject fruitLevel5;
     public float score { get; private set; } = 0;
-    
+
     private AudioSource audioSource;
 
     private void Awake()
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
             spawner.AddFruitPrefab(fruitLevel3);
         }
 
-        if (score >= 5 && score <= 6)
+        if (score >= 300 && score <= 301)
         {
             spawner.AddFruitPrefab(fruitLevel4);
         }
